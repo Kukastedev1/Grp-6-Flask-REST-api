@@ -22,7 +22,6 @@ def register():
             "errors": err.messages
         }), 400
 
-    # Check if user exists
     existing_user = User.query.filter_by(username=data["username"]).first()
     if existing_user:
         return jsonify({
@@ -74,8 +73,6 @@ def login():
         "user": user.to_dict()
     }), 200
 
-
-# Example protected route (for testing RBAC)
 from flask_jwt_extended import jwt_required
 
 @auth_bp.route("/admin-only", methods=["GET"])
